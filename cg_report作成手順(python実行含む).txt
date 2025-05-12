@@ -1,0 +1,55 @@
+nasakata配下
+
+cg_problem_report.sh　実行
+
+結果Directory下にfileが作成
+
+結果DirectoryのZipが作成
+
+*********
+Zipを解凍
+
+下記を結果Directoryにコピー
+generate_rof_10.py
+generate_problem_details_doc_5.py
+
+
+仮想環境作成してword導入、
+
+python3 -m venv myenv
+
+source myenv/bin/activate
+
+(myenv)仮想環境へ移動
+
+pip install python-docx
+
+python3 generate_problem_details_doc_5.py
+
+deactivate
+
+
+
+********
+
+結果Directory下にwordが作成
+Detector_Recipes_Compliance_Status.dox
+Problem_Details_Report.docx
+
+********
+
+echo $OCI_TENANCY
+
+
+oci cloud-guard target list -c ocid1.tenancy.oc1..aaaaaaaa3bgp7z6kffjkajrxckvtxfnj7lnn7cvgvqbbr4stmozk7obqdjjq
+
+oci cloud-guard target-detector-recipe list --compartment-id ocid1.tenancy.oc1..aaaaaaaa3bgp7z6kffjkajrxckvtxfnj7lnn7cvgvqbbr4stmozk7obqdjjq --target-id ocid1.cloudguardtarget.oc1.ap-tokyo-1.amaaaaaanyabxsyadzaicdohxopgdi3pteyqy25nnow4gejlqme4lm3erhsq
+
+"detector": "IAAS_INSTANCE_SECURITY_DETECTOR",
+        "detector-recipe-id": "ocid1.cloudguarddetectorrecipe.oc1.ap-tokyo-1.amaaaaaanyabxsyad4xjc2u2qrf6inoykjmncsyvrvgjhuiqxmk37pcyfnka"
+
+*********
+
+oci cloud-guard target list -c ocid1.tenancy.oc1..aaaaaaaa3bgp7z6kffjkajrxckvtxfnj7lnn7cvgvqbbr4stmozk7obqdjjq --query 'data.items[0].id' --all --raw-output
+
+
