@@ -1,8 +1,17 @@
 #!/bin/bash
 
-# Tenancy OCID を config から取得
-TENANCY_OCID=ocid1.tenancy.oc1..aaaaaaaa3bgp7z6kffjkajrxckvtxfnj7lnn7cvgvqbbr4stmozk7obqdjjq
-#TENANCY_OCID=$(awk -F "=" '/^tenancy/ {print $2}' ~/.oci/config | xargs)
+#前処理
+
+timestamp=$(date '+%Y%m%d_%H%M%S')
+
+output_dir="RecipeConfig_${timestamp}"
+mkdir -p "$output_dir"
+
+# Tenancy OCID を取得 (cloud shell)
+
+TENANCY_OCID="$OCI_TENANCY"
+#TENANCY_OCID=ocid1.tenancy.oc1..aaaaaaaa3bgp7z6kffjkajrxckvtxfnj7lnn7cvgvqbbr4stmozk7obqdjjq
+
 
 # Oracle管理のDetector Recipeをすべて取得し、各レシピに対してルールを抽出
 oci cloud-guard detector-recipe list \
@@ -15,10 +24,15 @@ oci cloud-guard detector-recipe list \
     # フィールド抽出
     RECIPE_ID=$(echo "$recipe" | jq -r '.OCID')
     DETECTOR=$(echo "$recipe" | jq -r '.Detector')
-    OUTPUT_FILE="${DETECTOR}.csv"
+    SUFFIX="${RECIPE_ID: -8}"  # OCIDの末尾8桁を抽出
+    OUTPUT_FILE="${output_dir}/${DETECTOR}_${SUFFIX}.csv"
 
-    # ルールを抽出してファイルに保存
+    # 出力ファイルを初期化（ヘッダーは必要に応じて付け加えてください）
+    echo '"Detector","ID","Name","RiskLevel","IsEnabled","IsConfigAllowed","Labels","Configurations..."' > "$OUTPUT_FILE"
+
+    # ルールを抽出してファイルに保存（上書き）
     oci cloud-guard detector-recipe-detector-rule list \
+      --compartment-id "$TENANCY_OCID" \
       --detector-recipe-id "$RECIPE_ID" \
       --all \
       --query 'data.items[*].{
@@ -51,4 +65,3 @@ oci cloud-guard detector-recipe list \
       ' >> "$OUTPUT_FILE"
 
 done
-
