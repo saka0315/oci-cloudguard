@@ -11,7 +11,7 @@ OCI全体のセキュリティ遵守状況を可視化した監査レポート(M
 1.oci-cloud-guard-check.sh:   Cloud GuardのConfiguration情報取得シェル
 2.generate_rof_10.py:        Cloud Guard監査サマリ作成プログラム
 3.generate_problem_details_doc_5.py: Cloud Guard監査詳細作成プログラム
-4.OCI_Security_Health_Check_Report_Sample_v2.pdf :サンプル結果
+4.OCI_Security_Health_Check_Report_Sample_v2.csv :サンプル結果
 
 手順：
 1. 自身のPCにoci-cloud-guard-check.sh、generate_rof_10.py、generate_problem_details_doc_5.pyをダウンロード
@@ -54,6 +54,7 @@ Problem_Details_Report.docx
 
 概要:
 Cloud Guard設計/カストマイズ用にレシピ構成設定内容の一覧を出力
+
 
 関連シェル、プログラムなど:
 Recipe_rules.sh:　Recipe構成出力シェル
