@@ -1,19 +1,18 @@
 #!/bin/bash
 # updated 241204
 
+
+#Tenancy OCID を Cloud shell 環境変数から取得
+compartment_ocid="$OCI_TENANCY" 
+#Tenancy OCID を直接入力
+#compartment_ocid=ocid1.tenancy.oc1..aaaaaaaa*******
+
+#echo "Your tenancy: $OCI_TENANCY "
+
 #前処理
-
 timestamp=$(date '+%Y%m%d_%H%M%S')
-echo "Your tenancy: $OCI_TENANCY "
 
-#Cloud shell
-ACCOUNT_NAME=$(whoami)
-echo "Your account: $ACCOUNT_NAME"
-
-#output_dir="output_${timestamp}"
-#Cloud shell
-output_dir="${ACCOUNT_NAME}_${timestamp}"
-
+output_dir="CGAudit_${timestamp}"
 mkdir -p "$output_dir"
 
 echo "directory '$output_dir' created "
@@ -21,10 +20,6 @@ echo "directory '$output_dir' created "
 exec > >(tee -a "${output_dir}/output.log")
 #exec 2> >(tee -a "${output_dir}/error.log" >&2)
 exec 2>"${output_dir}/error.log"
-
-#compartment_ocid="ocid1.tenancy.oc1..aaaaaaaa3bgp7z6kffjkajrxckvtxfnj7lnn7cvgvqbbr4stmozk7obqdjjq"
-#Cloud shell
-compartment_ocid="$OCI_TENANCY" 
 
 region=$(oci cloud-guard configuration get --compartment-id $compartment_ocid --query 'data."reporting-region"' --raw-output)
 
