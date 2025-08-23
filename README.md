@@ -21,44 +21,26 @@ OCI全体のセキュリティ遵守状況を可視化した監査レポート(M
 
 手順：
 1. 自身のPCにoci-cloud-guard-check.sh、generate_rof_10.py、generate_problem_details_doc_5.pyをダウンロード
-2. tenancy(Administrators)権限にてOCI Console login後
-OCI Cloud Shellを開く
-
+2. tenancy(Administrators)権限にてOCI Console login後OCI Cloud Shellを開く
 3. Cloud Shellのメニューからoci-cloud-guard-check.shをupload
-
 4. oci-cloud-guard-check.sh を実行
-$ chmod +x oci-cloud-guard-check.sh
-$ ./oci-cloud-guard-check.sh 
-
-"CGAudit_実行日時"の名前のDirectoryが新規に作成され以下にCloud Guardの各種Configuration関連fileが作成される
-
+  $ chmod +x oci-cloud-guard-check.sh
+  $ ./oci-cloud-guard-check.sh 
+  "CGAudit_実行日時"の名前のDirectoryが新規に作成され以下にCloud Guardの各種Configuration関連fileが作成される
 5.上記Directory自体のzipも作成されるのでCloud Shellのメニューから自PCにDownload
-
-6.自PCで上記zipを解凍
-Cloud Shell上でシェル実行した結果の"CGAudit_実行日時"の名前のDirectoryが展開される
-
-7. すでにDownloadしてあるgenerate_rof_10.py、generate_problem_details_doc_5.py
-を上記Directory下にコピー
-
+6.自PCで上記zipを解凍: Cloud Shell上でシェル実行した結果の"CGAudit_実行日時"の名前のDirectoryが展開される
+7. すでにDownloadしてあるgenerate_rof_10.py、generate_problem_details_doc_5.pyを上記Directory下にコピー
 8. python仮想環境作成
-
-$ python3 -m venv myenv
-
-
+   $ python3 -m venv myenv
 9. (myenv)仮想環境へ移動してword library導入、python 実行
-
-$ source myenv/bin/activate
-
-$ pip install python-docx
-
-$ python3 generate_rof_10.py
-$ python3 generate_problem_details_doc_5.py
-
-$ deactivate
-
-9. 結果Directory下にword文書が作成
-Detector_Recipes_Compliance_Status.dox
-Problem_Details_Report.docx
+  $ source myenv/bin/activate
+  $ pip install python-docx
+  $ python3 generate_rof_10.py
+  $ python3 generate_problem_details_doc_5.py
+  $ deactivate
+10. 結果Directory下にword文書が作成
+  Detector_Recipes_Compliance_Status.dox
+  Problem_Details_Report.docx
 
 [2]サンプルプログラム2: Cloud Guard Recipe構成設定出力
 
