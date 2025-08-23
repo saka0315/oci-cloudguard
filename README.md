@@ -11,7 +11,7 @@ Tenancy OCIDをCloud shell環境変数から取得するところをコメント
 [1] サンプルプログラム１:Cloud Guard 監査レポート出力プログラム
 
 概要:
-OCI全体のセキュリティ遵守状況を可視化した監査レポート(MS WORD文書)の出力
+  OCI全体のセキュリティ遵守状況を可視化した監査レポート(MS WORD文書)の出力
 
 関連シェル、プログラムなど:
 1. oci-cloud-guard-check.sh:   Cloud GuardのConfiguration情報取得シェル
@@ -45,46 +45,39 @@ OCI全体のセキュリティ遵守状況を可視化した監査レポート(M
 [2]サンプルプログラム2: Cloud Guard Recipe構成設定出力
 
 概要:
-Cloud Guard設計/カストマイズ用にレシピ構成設定内容の一覧を出力
+  Cloud Guard設計/カストマイズ用にレシピ構成設定内容の一覧を出力
 
 関連シェル、プログラムなど:
-Recipe_rules.sh:　Recipe構成出力シェル
-IAAS_CONFIGURATION_DETECTOR_RecipeConfig.csv: サンプル結果 
+1. Recipe_rules.sh:　Recipe構成出力シェル
+2. IAAS_CONFIGURATION_DETECTOR_RecipeConfig.csv: サンプル結果 
 
 手順:
 1. 自PCにRecipe_rules.shをダウンロード
-
 2. tenancy(Administrators)権限にてOCI Console login後OCI Cloud Shellを開く
-
 3. Cloud ShellのメニューからRecipe_rules.shをupload
-
 4. Recipe_rules.sh実行
-$ chmod +x Recipe_rules.sh
-$ ./Recipe_rules.sh
-
-5. "RecipeConfig_実行日時"の名前のDirectoryが新規に作成され配下にCloud Guardの各種Recipe構成file(Detectorタイプ単位)が作成される。必要に応じてCloud Shellのメニューから自PCにダウンロード
+  $ chmod +x Recipe_rules.sh
+  $ ./Recipe_rules.sh
+5. "RecipeConfig_実行日時"の名前のDirectoryが新規に作成され配下にCloud Guardの各種Recipe構成file(Detectorタイプ単位)が作成される。
+   必要に応じてCloud Shellのメニューから自PCにダウンロード
 
 [3]サンプルプログラム3: Cloud Guard全Problems一覧出力
 
 概要:
-Cloud Guard運用者向けに全ての問題の一覧(問題詳細/対応案含)を出力
+  Cloud Guard運用者向けに全ての問題の一覧(問題詳細/対応案含)を出力
 
 関連シェル、プログラムなど:
-Recipe_Rules_recommend.sh　:Problem一覧出力シェル
-IAAS_CONFIGURATION_DETECTOR_ProblemList.csv　:サンプル結果
+1.Recipe_Rules_recommend.sh　:Problem一覧出力シェル
+2.IAAS_CONFIGURATION_DETECTOR_ProblemList.csv　:サンプル結果
 
 手順:
 1. 自PCにRecipe_Rules_recommend.shをダウンロード
-
 2. tenancy(Administrators)権限にてOCI Console login後OCI Cloud Shellを開く
-
 3. Cloud ShellのメニューからRecipe_Rules_recommend.shをupload
-
 4. Recipe_Rules_recommend.sh実行
-$ chmod +x Recipe_Rules_recommend.sh
-$ ./Recipe_Rules_recommend.sh
-
-
-5. "ProblemList_実行日時"の名前のDirectoryが新規に作成され配下にCloud GuardのProblem File(Detectorタイプ単位)を作成される。必要に応じてCloud Shellのメニューから自PCにダウンロード
+  $ chmod +x Recipe_Rules_recommend.sh
+  $ ./Recipe_Rules_recommend.sh
+5. "ProblemList_実行日時"の名前のDirectoryが新規に作成され配下にCloud GuardのProblem File(Detectorタイプ単位)を作成される。
+   必要に応じて  Cloud Shellのメニューから自PCにダウンロード
 
 
