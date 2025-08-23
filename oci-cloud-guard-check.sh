@@ -72,9 +72,8 @@ fi
 
 oci cloud-guard detector-recipe-detector-rule list --compartment-id $compartment_ocid --detector-recipe-id $configid --all > ${output_dir}/all_recipes_config_detector.json
 if [ $? -ne 0 ]; then
-  echo "Cloud Guard Configuration detector-recipe-detector-rule list failed." 
-  exit 1
-    else
+  echo "Cloud Guard Configuration detector-recipe-detector-rule list not got." 
+  else
   echo "Cloud Guard Configuration detector-recipe-detector-rule list successfully got." 
 fi
 
