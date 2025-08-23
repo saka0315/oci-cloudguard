@@ -1,12 +1,11 @@
 #!/bin/bash
-# updated 241204
+# updated 250822
 
-
-#Tenancy OCID を Cloud shell 環境変数から取得
-compartment_ocid="$OCI_TENANCY" 
-#Tenancy OCID を直接入力
-#compartment_ocid=ocid1.tenancy.oc1..aaaaaaaa*******
-
+#TENANCY OCID を Cloud shell 環境変数から取得
+TENANCY_OCID="$OCI_TENANCY" 
+#TENANCY OCID を直接入力
+#TENANCY_OCID=ocid1.tenancy.oc1..aaaaaaaa************
+             
 #echo "Your tenancy: $OCI_TENANCY "
 
 #前処理
@@ -21,7 +20,7 @@ exec > >(tee -a "${output_dir}/output.log")
 #exec 2> >(tee -a "${output_dir}/error.log" >&2)
 exec 2>"${output_dir}/error.log"
 
-region=$(oci cloud-guard configuration get --compartment-id $compartment_ocid --query 'data."reporting-region"' --raw-output)
+region=$(oci cloud-guard configuration get --compartment-id $TENANCY_OCID --query 'data."reporting-region"' --raw-output)
 
 echo "Cloud Guard Report Region: $region "
 
@@ -29,7 +28,7 @@ echo "Cloud Guard Report Region: $region "
 # (1) Gather all detector recipe ocid's
 
 #TARGET_ID="ocid1.cloudguardtarget.oc1.ap-tokyo-1.amaaaaaanyabxsyadzaicdohxopgdi3pteyqy25nnow4gejlqme4lm3erhsq"
-TARGET_ID=$(oci cloud-guard target list -c "$compartment_ocid" --query 'data.items[0].id' --all --raw-output)
+TARGET_ID=$(oci cloud-guard target list -c "$TENANCY_OCID" --query 'data.items[0].id' --all --raw-output)
 if [ $? -ne 0 ]; then
     echo "Error: cloud-guard target list failed "
     exit 1
@@ -38,13 +37,13 @@ fi
 # 各DetectorのIDを取得
 # https://docs.oracle.com/en-us/iaas/api/#/en/cloud-guard/20200131/datatypes/TargetDetectorRecipeDetectorRuleSummary
 # TargetDetectorRecipeDetectorRuleSummary Reference : detector
-activityid=$(oci cloud-guard target-detector-recipe list --compartment-id "$compartment_ocid" --target-id "$TARGET_ID" --all --query "data.items[?detector=='IAAS_ACTIVITY_DETECTOR'] | [0].\"detector-recipe-id\"" --raw-output)
+activityid=$(oci cloud-guard target-detector-recipe list --compartment-id "$TENANCY_OCID" --target-id "$TARGET_ID" --all --query "data.items[?detector=='IAAS_ACTIVITY_DETECTOR'] | [0].\"detector-recipe-id\"" --raw-output)
 
-threadid=$(oci cloud-guard target-detector-recipe list --compartment-id "$compartment_ocid" --target-id "$TARGET_ID" --all --query "data.items[?detector=='IAAS_THREAT_DETECTOR'] | [0].\"detector-recipe-id\"" --raw-output)
+threadid=$(oci cloud-guard target-detector-recipe list --compartment-id "$TENANCY_OCID" --target-id "$TARGET_ID" --all --query "data.items[?detector=='IAAS_THREAT_DETECTOR'] | [0].\"detector-recipe-id\"" --raw-output)
 
-configid=$(oci cloud-guard target-detector-recipe list --compartment-id "$compartment_ocid" --target-id "$TARGET_ID" --all --query "data.items[?detector=='IAAS_CONFIGURATION_DETECTOR'] | [0].\"detector-recipe-id\"" --raw-output)
+configid=$(oci cloud-guard target-detector-recipe list --compartment-id "$TENANCY_OCID" --target-id "$TARGET_ID" --all --query "data.items[?detector=='IAAS_CONFIGURATION_DETECTOR'] | [0].\"detector-recipe-id\"" --raw-output)
 
-instanceid=$(oci cloud-guard target-detector-recipe list --compartment-id "$compartment_ocid" --target-id "$TARGET_ID" --all --query "data.items[?detector=='IAAS_INSTANCE_SECURITY_DETECTOR'] | [0].\"detector-recipe-id\"" --raw-output)
+instanceid=$(oci cloud-guard target-detector-recipe list --compartment-id "$TENANCY_OCID" --target-id "$TARGET_ID" --all --query "data.items[?detector=='IAAS_INSTANCE_SECURITY_DETECTOR'] | [0].\"detector-recipe-id\"" --raw-output)
 
 # 結果を表示（確認用）
 echo "CG Activity Detector ID: $activityid"
@@ -55,14 +54,14 @@ echo "CG Instance Security Detector ID: $instanceid"
 
 # (2) Gather all detector recipes : 
 
-oci cloud-guard detector-recipe-detector-rule list --compartment-id $compartment_ocid --detector-recipe-id $threadid --all > ${output_dir}/all_recipes_threat_detector.json
+oci cloud-guard detector-recipe-detector-rule list --compartment-id $TENANCY_OCID --detector-recipe-id $threadid --all > ${output_dir}/all_recipes_threat_detector.json
 if [ $? -ne 0 ]; then
   echo "Cloud Guard Threat detector-recipe-detector-rule list not got." 
   else
   echo "Cloud Guard Threat detector-recipe-detector-rule list successfully got." 
 fi
 
-oci cloud-guard detector-recipe-detector-rule list --compartment-id $compartment_ocid --detector-recipe-id $instanceid --all > ${output_dir}/all_recipes_instance_security.json
+oci cloud-guard detector-recipe-detector-rule list --compartment-id $TENANCY_OCID --detector-recipe-id $instanceid --all > ${output_dir}/all_recipes_instance_security.json
 if [ $? -ne 0 ]; then
   echo "Cloud Guard Instance Security detector-recipe-detector-rule list not got." 
   else
@@ -70,14 +69,14 @@ if [ $? -ne 0 ]; then
 fi
 
 
-oci cloud-guard detector-recipe-detector-rule list --compartment-id $compartment_ocid --detector-recipe-id $configid --all > ${output_dir}/all_recipes_config_detector.json
+oci cloud-guard detector-recipe-detector-rule list --compartment-id $TENANCY_OCID --detector-recipe-id $configid --all > ${output_dir}/all_recipes_config_detector.json
 if [ $? -ne 0 ]; then
-  echo "Cloud Guard Configuration detector-recipe-detector-rule list not got." 
+  echo "Cloud Guard Configuration detector-recipe-detector-rule list failed." 
   else
   echo "Cloud Guard Configuration detector-recipe-detector-rule list successfully got." 
 fi
 
-oci cloud-guard detector-recipe-detector-rule list --compartment-id $compartment_ocid --detector-recipe-id $activityid --all > ${output_dir}/all_recipes_activity_detector.json
+oci cloud-guard detector-recipe-detector-rule list --compartment-id $TENANCY_OCID --detector-recipe-id $activityid --all > ${output_dir}/all_recipes_activity_detector.json
 if [ $? -ne 0 ]; then
   echo "Cloud Guard Activity detector-recipe-detector-rule list not got." 
     else
@@ -87,7 +86,7 @@ fi
 # (3)Gather list of problems
 
 #oci cloud-guard problem list --compartment-id ocid1.tenancy.oc1..aaaaaaaa3bgp7z6kffjkajrxckvtxfnj7lnn7cvgvqbbr4stmozk7obqdjjq --access-level ACCESSIBLE --compartment-id-in-subtree TRUE --all  > ${output_dir}/all_detected_problems.json
-oci cloud-guard problem list --compartment-id $compartment_ocid --access-level ACCESSIBLE --compartment-id-in-subtree TRUE --all  > ${output_dir}/all_detected_problems.json
+oci cloud-guard problem list --compartment-id $TENANCY_OCID --access-level ACCESSIBLE --compartment-id-in-subtree TRUE --all  > ${output_dir}/all_detected_problems.json
 
 if [ $? -ne 0 ]; then
   echo "OCI Cloud Guard problem list failed." 
