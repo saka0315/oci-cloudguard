@@ -27,8 +27,8 @@ OCI Cloud Shellを開く
 3. Cloud Shellのメニューからoci-cloud-guard-check.shをupload
 
 4. oci-cloud-guard-check.sh を実行
-%chmod +x oci-cloud-guard-check.sh
-%./oci-cloud-guard-check.sh 
+$ chmod +x oci-cloud-guard-check.sh
+$ ./oci-cloud-guard-check.sh 
 
 "CGAudit_実行日時"の名前のDirectoryが新規に作成され以下にCloud Guardの各種Configuration関連fileが作成される
 
@@ -42,19 +42,19 @@ Cloud Shell上でシェル実行した結果の"CGAudit_実行日時"の名前�
 
 8. python仮想環境作成
 
-python3 -m venv myenv
+$ python3 -m venv myenv
 
 
 9. (myenv)仮想環境へ移動してword library導入、python 実行
 
-source myenv/bin/activate
+$ source myenv/bin/activate
 
-pip install python-docx
+$ pip install python-docx
 
-python3 generate_rof_10.py
-python3 generate_problem_details_doc_5.py
+$ python3 generate_rof_10.py
+$ python3 generate_problem_details_doc_5.py
 
-deactivate
+$ deactivate
 
 9. 結果Directory下にword文書が作成
 Detector_Recipes_Compliance_Status.dox
@@ -77,8 +77,8 @@ IAAS_CONFIGURATION_DETECTOR_RecipeConfig.csv: サンプル結果
 3. Cloud ShellのメニューからRecipe_rules.shをupload
 
 4. Recipe_rules.sh実行
-% chmod +x Recipe_rules.sh
-% ./Recipe_rules.sh
+$ chmod +x Recipe_rules.sh
+$ ./Recipe_rules.sh
 
 5. "RecipeConfig_実行日時"の名前のDirectoryが新規に作成され配下にCloud Guardの各種Recipe構成file(Detectorタイプ単位)が作成される。必要に応じてCloud Shellのメニューから自PCにダウンロード
 
@@ -99,9 +99,10 @@ IAAS_CONFIGURATION_DETECTOR_ProblemList.csv　:サンプル結果
 3. Cloud ShellのメニューからRecipe_Rules_recommend.shをupload
 
 4. Recipe_Rules_recommend.sh実行
-% chmod +x Recipe_Rules_recommend.sh
-% ./Recipe_Rules_recommend.sh
+$ chmod +x Recipe_Rules_recommend.sh
+$ ./Recipe_Rules_recommend.sh
 
 
 5. "ProblemList_実行日時"の名前のDirectoryが新規に作成され配下にCloud GuardのProblem File(Detectorタイプ単位)を作成される。必要に応じてCloud Shellのメニューから自PCにダウンロード
+
 
