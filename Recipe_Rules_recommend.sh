@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# Tenancy OCID を config から取得
-#TENANCY_OCID="$OCI_TENANCY"
-TENANCY_OCID=ocid1.tenancy.oc1..aaaaaaaa3bgp7z6kffjkajrxckvtxfnj7lnn7cvgvqbbr4stmozk7obqdjjq
+# Tenancy OCID を Cloud shell 環境変数から取得
+TENANCY_OCID="$OCI_TENANCY"
+#Tenancy OCID を直接入力
+#TENANCY_OCID=ocid1.tenancy.oc1..aaaaaaaa*************
 
 # 出力ディレクトリ作成
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
