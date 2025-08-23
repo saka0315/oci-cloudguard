@@ -1,16 +1,17 @@
 #!/bin/bash
 
-#前処理
+# Tenancy OCID をCloud shell 環境変数から取得 
+TENANCY_OCID="$OCI_TENANCY"
+#Tenancy OCID を直接入力
+#TENANCY_OCID=ocid1.tenancy.oc1..aaaaaaaa****************
 
+#前処理
 timestamp=$(date '+%Y%m%d_%H%M%S')
 
 output_dir="RecipeConfig_${timestamp}"
 mkdir -p "$output_dir"
 
-# Tenancy OCID を取得 (cloud shell)
 
-TENANCY_OCID="$OCI_TENANCY"
-#TENANCY_OCID=ocid1.tenancy.oc1..aaaaaaaa3bgp7z6kffjkajrxckvtxfnj7lnn7cvgvqbbr4stmozk7obqdjjq
 
 
 # Oracle管理のDetector Recipeをすべて取得し、各レシピに対してルールを抽出
