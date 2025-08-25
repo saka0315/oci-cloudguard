@@ -43,7 +43,7 @@ TENANCY_OCID={tenancyのocid}
 6. 自PCで上記zipを解凍: Cloud Shell上でシェル実行した結果の"CGAudit_実行日時"の名前のDirectoryが展開される　
 7. すでにDownloadしてあるgenerate_rof_10.py、generate_problem_details_doc_5.pyを上記Directory下にコピー  
 8. python仮想環境作成  
-  $ cd "CGAudit_実行日時"のDirectory. 
+  $ cd "CGAudit_実行日時"のDirectory  
   $ python3 -m venv myenv
 9. (myenv)仮想環境へ移動してword library導入、python 実行  
   $ source myenv/bin/activate  
@@ -52,7 +52,7 @@ TENANCY_OCID={tenancyのocid}
   $ python3 generate_problem_details_doc_5.py  
   $ deactivate  
 10. 結果Directory下にword文書が作成  
-  Detector_Recipes_Compliance_Status.dox. 
+  Detector_Recipes_Compliance_Status.dox  
   Problem_Details_Report.docx  　
 
 [2]サンプルプログラム2: Cloud Guard Recipe構成設定出力
