@@ -79,7 +79,7 @@ TENANCY_OCID={tenancyのocid}
 Cloud Guard運用者向けに全ての問題の一覧(問題詳細/対応案含)を出力
 
 関連シェル、プログラムなど:  
-1.Recipe_Rules_recommend.sh　:Problem一覧出力シェル
+1.Recipe_Rules_recommend.sh　:Problem一覧出力シェル  
 2.IAAS_CONFIGURATION_DETECTOR_ProblemList.csv　:サンプル結果
 
 手順:
