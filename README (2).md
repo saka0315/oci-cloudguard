@@ -9,16 +9,16 @@ Tenancy OCIDをCloud shell環境変数から取得するところをコメント
 代わりにTENANCY_OCIDを直接入力ください。
 
 (変更前)
-#TENANCY OCID を Cloud shell 環境変数から取得
-TENANCY_OCID="$OCI_TENANCY" 
-#TENANCY OCID を直接入力
-#TENANCY_OCID=ocid1.tenancy.oc1..aaaaaaaa************
+#TENANCY OCID を Cloud shell 環境変数から取得  
+TENANCY_OCID="$OCI_TENANCY"  
+#TENANCY OCID を直接入力. 
+#TENANCY_OCID=ocid1.tenancy.oc1..aaaaaaaa************  
 
-(変更後)
-#TENANCY OCID を Cloud shell 環境変数から取得
-#TENANCY_OCID="$OCI_TENANCY" 
-#TENANCY OCID を直接入力
-TENANCY_OCID={tenancyのocid}
+(変更後)  
+#TENANCY OCID を Cloud shell 環境変数から取得  
+#TENANCY_OCID="$OCI_TENANCY"  
+#TENANCY OCID を直接入力  
+TENANCY_OCID={tenancyのocid}  
 
 [1] サンプルプログラム１:Cloud Guard 監査レポート出力プログラム
 
@@ -47,11 +47,11 @@ TENANCY_OCID={tenancyのocid}
 9. (myenv)仮想環境へ移動してword library導入、python 実行  
   $ source myenv/bin/activate  
   $ pip install python-docx
-  $ python3 generate_rof_10.py   　
+  $ python3 generate_rof_10.py  
   $ python3 generate_problem_details_doc_5.py  
   $ deactivate  
-11. 結果Directory下にword文書が作成   
-  Detector_Recipes_Compliance_Status.dox   　
+10. 結果Directory下にword文書が作成  
+  Detector_Recipes_Compliance_Status.dox. 
   Problem_Details_Report.docx  　
 
 [2]サンプルプログラム2: Cloud Guard Recipe構成設定出力
@@ -77,7 +77,7 @@ TENANCY_OCID={tenancyのocid}
 概要:
 Cloud Guard運用者向けに全ての問題の一覧(問題詳細/対応案含)を出力
 
-関連シェル、プログラムなど:
+関連シェル、プログラムなど:  
 1.Recipe_Rules_recommend.sh　:Problem一覧出力シェル
 2.IAAS_CONFIGURATION_DETECTOR_ProblemList.csv　:サンプル結果
 
@@ -85,7 +85,7 @@ Cloud Guard運用者向けに全ての問題の一覧(問題詳細/対応案含)
 1. 自PCにRecipe_Rules_recommend.shをダウンロード
 2. tenancy(Administrators)権限にてOCI Console login後OCI Cloud Shellを開く
 3. Cloud ShellのメニューからRecipe_Rules_recommend.shをupload
-4. Recipe_Rules_recommend.sh実行
+4. Recipe_Rules_recommend.sh実行  
   $ chmod +x Recipe_Rules_recommend.sh  
   $ ./Recipe_Rules_recommend.sh
 5. "ProblemList_実行日時"の名前のDirectoryが新規に作成され配下にCloud GuardのProblem File(Detectorタイプ単位)を作成される。必要に応じてCloud Shellのメニューから自PCにダウンロード
