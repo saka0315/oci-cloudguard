@@ -42,14 +42,14 @@ TENANCY_OCID={tenancyのocid}
 上記Directory自体のzipも作成されるのでCloud Shellのメニューから自PCにDownload　
 6. 自PCで上記zipを解凍: Cloud Shell上でシェル実行した結果の"CGAudit_実行日時"の名前のDirectoryが展開される　
 7. すでにDownloadしてあるgenerate_rof_10.py、generate_problem_details_doc_5.pyを上記Directory下にコピー
-8. python仮想環境作成    　
+8. python仮想環境作成  
   $ python3 -m venv myenv
-9. (myenv)仮想環境へ移動してword library導入、python 実行   　
-  $ source myenv/bin/activate
-  $ pip install python-docx  
+9. (myenv)仮想環境へ移動してword library導入、python 実行  
+  $ source myenv/bin/activate  
+  $ pip install python-docx
   $ python3 generate_rof_10.py   　
-  $ python3 generate_problem_details_doc_5.py   　
-  $ deactivate   　
+  $ python3 generate_problem_details_doc_5.py  
+  $ deactivate  
 11. 結果Directory下にword文書が作成   
   Detector_Recipes_Compliance_Status.dox   　
   Problem_Details_Report.docx  　
@@ -67,8 +67,8 @@ TENANCY_OCID={tenancyのocid}
 1. 自PCにRecipe_rules.shをダウンロード
 2. tenancy(Administrators)権限にてOCI Console login後OCI Cloud Shellを開く
 3. Cloud ShellのメニューからRecipe_rules.shをupload
-4. Recipe_rules.sh実行
-  $ chmod +x Recipe_rules.sh
+4. Recipe_rules.sh実行  
+  $ chmod +x Recipe_rules.sh  
   $ ./Recipe_rules.sh
 5. "RecipeConfig_実行日時"の名前のDirectoryが新規に作成され配下にCloud Guardの各種Recipe構成file(Detectorタイプ単位)が作成される。必要に応じてCloud Shellのメニューから自PCにダウンロード
 
@@ -86,7 +86,7 @@ Cloud Guard運用者向けに全ての問題の一覧(問題詳細/対応案含)
 2. tenancy(Administrators)権限にてOCI Console login後OCI Cloud Shellを開く
 3. Cloud ShellのメニューからRecipe_Rules_recommend.shをupload
 4. Recipe_Rules_recommend.sh実行
-  $ chmod +x Recipe_Rules_recommend.sh
+  $ chmod +x Recipe_Rules_recommend.sh  
   $ ./Recipe_Rules_recommend.sh
 5. "ProblemList_実行日時"の名前のDirectoryが新規に作成され配下にCloud GuardのProblem File(Detectorタイプ単位)を作成される。必要に応じてCloud Shellのメニューから自PCにダウンロード
 
