@@ -11,7 +11,7 @@ Tenancy OCIDをCloud shell環境変数から取得するところをコメント
 (変更前)  
 #TENANCY OCID を Cloud shell 環境変数から取得  
 TENANCY_OCID="$OCI_TENANCY"  
-#TENANCY OCID を直接入力. 
+#TENANCY OCID を直接入力  
 #TENANCY_OCID=ocid1.tenancy.oc1..aaaaaaaa************  
 
 (変更後)  
