@@ -23,7 +23,7 @@ Tenancy OCIDをCloud shell環境変数から取得するところをコメント
 1. 自身のPCにoci-cloud-guard-check.sh、generate_rof_10.py、generate_problem_details_doc_5.pyをダウンロード
 2. tenancy(Administrators)権限にてOCI Console login後OCI Cloud Shellを開く
 3. Cloud Shellのメニューからoci-cloud-guard-check.shをupload
-4. oci-cloud-guard-check.sh を実行
+4. oci-cloud-guard-check.sh を実行      
   $ chmod +x oci-cloud-guard-check.sh
   $ ./oci-cloud-guard-check.sh 
   "CGAudit_実行日時"の名前のDirectoryが新規に作成され以下にCloud Guardの各種Configuration関連fileが作成される
